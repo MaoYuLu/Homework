@@ -10,12 +10,9 @@ public class CreateFile {
 	public static void main(String[] args) throws IOException {
 		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
 		String time = sdf.format(new Date(System.currentTimeMillis()));
-		System.out.println(time);
-		File file = new File("H:\\"+time+".txt");
-		if(!file.exists()){
+		File file = new File(time+".txt");
+		if(!file.exists())
 			file.createNewFile();
-		}
-
 	}
-
+	
 }
