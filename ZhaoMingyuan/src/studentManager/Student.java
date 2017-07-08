@@ -1,4 +1,4 @@
-package cn.jxau.homework.studentManager;
+package studentManager;
 import java.io.Serializable;
  
 /**
