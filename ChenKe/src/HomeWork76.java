@@ -1,6 +1,6 @@
 
 
-
+/*
 	import java.util.ArrayList;
 	import java.util.Date;
 	import java.util.TreeSet;
@@ -53,9 +53,9 @@
 			//		System.out.println(string2);
 					String []s3 =string2.split("=");
 					list.add(s3[1]);
-					/*for(String string3 :s3){
+					for(String string3 :s3){
 						System.out.println(string3);
-						}*/
+						}
 					
 					}ts.add(new Student(list.get(0),Integer.valueOf(list.get(1)),Integer.valueOf(list.get(2))));
 				//System.out.println("=======");
@@ -70,7 +70,7 @@
 
 		
 
-	class Student implements Comparable<Student>{//
+	class tudent implements Comparable<Student>{
 		private String name;
 		private int age;
 		private int id;
@@ -137,3 +137,4 @@
 			return this.id-o.id;
 		}
 	}
+*/
