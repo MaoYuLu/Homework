@@ -10,6 +10,7 @@ import java.net.Socket;
 
 
 public class ServerImage {
+	
 	ServerSocket ss = null;
 	Socket socket = null;
 	private boolean bstarted = false;
@@ -26,6 +27,23 @@ public class ServerImage {
 		ServerRunnable sr = new ServerRunnable();
 		Thread thread = new Thread(sr);
 		thread.start();
+	}
+	
+	private  class  ServerRunnable implements Runnable {
+		@Override
+		public void run() {
+			connect();
+			byte[] by = new byte[1024];
+			int a = 0;
+			try {
+				while ((a = dis.read(by)) != -1) {
+					dos.write(by, 0, a);
+				}
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+			disconnect();
+		}		
 	}
 	
 	private void connect() {
@@ -68,22 +86,5 @@ public class ServerImage {
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-	}
-	
-	private  class  ServerRunnable implements Runnable {
-		@Override
-		public void run() {
-			connect();
-			byte[] by = new byte[1024];
-			int a = 0;
-			try {
-				while ((a = dis.read(by)) != -1) {
-					dos.write(by, 0, a);
-				}
-			} catch (IOException e) {
-				e.printStackTrace();
-			}
-			disconnect();
-		}		
 	}
 }

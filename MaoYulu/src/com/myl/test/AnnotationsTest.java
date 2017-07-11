@@ -1,8 +1,6 @@
 package com.myl.test;
 
 import java.lang.annotation.ElementType;
-import java.lang.annotation.Retention;
-import java.lang.annotation.RetentionPolicy;
 import java.lang.annotation.Target;
 
 import com.myl.test.AnnotationsTest.MyAnnotation;
@@ -48,31 +46,4 @@ class Person {
 	public String toString() {
 		return "姓名："+name+"性别"+sex+"年龄"+"学号"+id;
 	}
-
-
-	public String getName() {
-		return name;
-	}
-	public void setName(String name) {
-		this.name = name;
-	}
-	public String getSex() {
-		return sex;
-	}
-	public void setSex(String sex) {
-		this.sex = sex;
-	}
-	public int getAge() {
-		return age;
-	}
-	public void setAge(int age) {
-		this.age = age;
-	}
-	public int getId() {
-		return id;
-	}
-	public void setId(int id) {
-		this.id = id;
-	}
-
 }

@@ -8,6 +8,7 @@ import java.io.IOException;
 import java.net.Socket;
 
 public class ClientImage {
+	
 	Socket socket = null;
 	DataInputStream dis = null;
 	DataOutputStream dos = null;
@@ -22,6 +23,30 @@ public class ClientImage {
 		ClientRunnable cr = new ClientRunnable();
 		Thread thread = new Thread(cr);
 		thread.start();
+	}
+	
+	
+	private class ClientRunnable implements Runnable {
+		@Override
+		public void run() {
+			connect();
+			if (bconnected) {
+				byte[] b = new byte[1024];
+				int a = 0;
+				try {
+					while ((a=dis.read(b))!=-1) {
+						dos.write(b, 0, a);					
+					}
+					//dos.flush();
+					
+				} catch (IOException e) {
+					e.printStackTrace();
+				}finally{
+					disconnect();
+					bconnected = false;
+				}
+			}			
+		}		
 	}
 	
 	//连接服务器的方法
@@ -56,27 +81,5 @@ public class ClientImage {
 			e.printStackTrace();
 		}
 	}
-	
-	private class ClientRunnable implements Runnable {
-		@Override
-		public void run() {
-			connect();
-			if (bconnected) {
-				byte[] b = new byte[1024];
-				int a = 0;
-				try {
-					while ((a=dis.read(b))!=-1) {
-						dos.write(b, 0, a);					
-					}
-					//dos.flush();
-					
-				} catch (IOException e) {
-					e.printStackTrace();
-				}finally{
-					disconnect();
-					bconnected = false;
-				}
-			}			
-		}		
-	}
+
 }
