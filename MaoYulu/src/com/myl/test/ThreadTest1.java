@@ -21,8 +21,8 @@ class MyThread1 extends Thread {
 	public void run() {
 		synchronized (o) {
 			if (flag) {
-				for (int i = 0; i < 100; i++) {
-					for (int j = 0; j < 26; j++) {
+				for (int i = 1; i < 100; i++) {
+					for (int j = 1; j < 26; j++) {
 						o.notifyAll();
 						System.out.println(Thread.currentThread().getName() + "---："+i * j);
 						try {
@@ -38,10 +38,10 @@ class MyThread1 extends Thread {
 					}
 				}
 			} else {
-				for (int i = 0; i < 100; i++) {
-					for (char j = 'a'; j < 'z'; j++) {
+				for (int i = 1; i < 100; i++) {
+					for (char j = 'a'; j <= 'z'; j++) {
 						o.notifyAll();
-						System.out.println(Thread.currentThread().getName() + "---："+i * j);
+						System.out.println(Thread.currentThread().getName() + "---："+j);
 						try {
 							sleep(100);
 						} catch (InterruptedException e) {
