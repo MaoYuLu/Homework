@@ -14,20 +14,29 @@ public class Server {
 		ServerSocket ss = null;
 		Socket socket = null;
 		BufferedReader br = null;
+		BufferedReader br1 = null;
 		BufferedWriter bw = null ;
 		try {
 			ss = new ServerSocket(9000);
 			socket = ss.accept();
-			br = new BufferedReader(new InputStreamReader(socket.getInputStream()));
-			String str = "";
-			while ((str=br.readLine())!= null) {
-				System.out.println(str);			
-			}
-			socket.shutdownInput();
+			br1 = new BufferedReader(new InputStreamReader(socket.getInputStream()));
+			br = new BufferedReader(new InputStreamReader(System.in));
 			bw = new BufferedWriter(new OutputStreamWriter(socket.getOutputStream()));
-			bw.write("已接收信息");
-			bw.flush();
-			socket.shutdownOutput();
+			
+			while (true) {
+				String s = br1.readLine();
+					System.out.println(s);
+				
+				
+				System.out.println("请输入你要发给客户端的内容:");
+				String instr = br.readLine();
+				while ("exit".equals(instr)) {
+					System.exit(0);			
+				}
+				bw.write("Server:" + instr);
+				bw.newLine();  //空行
+				bw.flush();
+			}
 		} catch (IOException e) {
 			e.printStackTrace();
 		}finally {
@@ -41,6 +50,13 @@ public class Server {
 			if (null != br) {
 				try {
 					br.close();
+				} catch (IOException e) {
+					e.printStackTrace();
+				}				
+			}
+			if (null != br1) {
+				try {
+					br1.close();
 				} catch (IOException e) {
 					e.printStackTrace();
 				}				
