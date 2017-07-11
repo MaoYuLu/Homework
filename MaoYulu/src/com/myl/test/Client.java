@@ -11,6 +11,7 @@ import java.net.UnknownHostException;
 
 public class Client {
 	public static void main(String[] args) {
+		
 		BufferedWriter bw = null;
 		BufferedReader br = null;
 		Socket socket = null;
